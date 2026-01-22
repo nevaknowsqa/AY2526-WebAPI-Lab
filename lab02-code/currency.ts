@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const exchange = async (from: string, to: string) => {
-  // const url = `https://data.fixer.io/api/latest?base=EUR&symbols=${symbol}&access_key=d2fe3fcd2c34519c0e65802b8a6634d7`;
-  const url = `https://api.exchangeratesapi.io/v1/latest?access_key=6b234af1aaa5cc46c808ce6fe25928b7&base=EUR&symbols=${from},${to}`;
+  // const url = `https://data.fixer.io/api/latest?base=EUR&symbols=${symbol}&access_key=Your_APIKEY`;
+  const url = `https://api.exchangeratesapi.io/v1/latest?access_key=Your_APIKEY&base=EUR&symbols=${from},${to}`;
   const options = {
     url: url,
   };
