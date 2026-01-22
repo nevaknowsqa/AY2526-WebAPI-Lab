@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const addressLocation = async (address: string) => {
-  const url = `https://api.maptiler.com/geocoding/${address}.json?key=5k83RAAbejEi5TgdcKFR`;
+  const url = `https://api.maptiler.com/geocoding/${address}.json?key=Your_APIKEY`;
   try {
     const {data, status} = await axios.get(url, {});
     // console.log(`${status}`);
