@@ -8,15 +8,6 @@ npm i @types/koa-bodyparser<br />
 npm i @types/koa-json<br />
 npm i @types/koa-logger<br />
 npm i @types/koa-router<br />
-npm i koa-passport @types/koa-passport<br />
-npm i passport-http @types/passport-http<br />
-npm i passport-jwt @types/passport-jwt<br />
-npm i jsonschema<br />
-npm i koa-static @types/koa-static<br />
-npm i @koa/cors<br />
-npm i -g jest <br />
-npm i supertest<br />
-npm i eslint<br />
 <br />
 
 <b>Before running the code:</b><br />
