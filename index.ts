@@ -8,8 +8,17 @@ import { CustomErrorMessageFunction, query, body, validationResults } from "koa-
 const app: Koa = new Koa();
 const router: Router = new Router();
 
+const welcomeAPI = async (ctx: RouterContext, next: any) => {
+ctx.body = {
+message: "Welcome to the blog API!"
+};
+await next();
+}
+
+
+
 const customErrorMessage: CustomErrorMessageFunction = (
-        _ctx: RouterContext,
+        _ctx: any,
         value: string
     ) => {
         return (
@@ -42,7 +51,7 @@ const film = [
     ];
 
 // router.get('/', async (ctx: RouterContext, next: any) => {
-router.get('/', ...validatorName, async (ctx: RouterContext, next: any) => {
+router.get('/', ...validatorName, async (ctx: any, next: any) => {
     const result = validationResults(ctx);
     if( result.hasErrors() ){
         ctx.status = 422;
@@ -59,7 +68,7 @@ router.get('/film', async (ctx: RouterContext, next: any) => {
     await next();
 })
 
-router.get('/film/:id', async (ctx: RouterContext, next: any) => {
+router.get('/film/:id', async (ctx: any, next: any) => {
     const id = ctx.params.id;
     film.forEach((f,i) => {
         if (id == f.id){
@@ -68,14 +77,14 @@ router.get('/film/:id', async (ctx: RouterContext, next: any) => {
     });
 })
 
-router.post('/film', async (ctx: RouterContext, next: any) => {
+router.post('/film', async (ctx: any, next: any) => {
     const data = ctx.request.body;
     film.push(data);
     ctx.body = data
     await next();
 })
 
-router.put('/film', async (ctx: RouterContext, next: any) => {
+router.put('/film', async (ctx: any, next: any) => {
     const data = ctx.request.body;
     film.forEach((f) => {
         if (data.id == f.id) {
@@ -86,6 +95,8 @@ router.put('/film', async (ctx: RouterContext, next: any) => {
     ctx.body = film;
     await next();
 })
+
+router.get('/api/v1', welcomeAPI);
 
 router.post('/', async (ctx: RouterContext, next: any) => {
     const data = ctx.request.body;
