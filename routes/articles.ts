@@ -46,9 +46,37 @@ ctx.body = newArticle;
 await next();
 }
 
-const updateArticle = async (ctx: RouterContext, next: any) => {
-//TODO: edit an article
-}
+const updateArticle = async (ctx: any, next: any) => {
+  // Parse the article ID from the route parameter and convert to number
+  const id = +ctx.params.id;
+
+  // Check if the article exists in the array
+  if (id < 1 || id > articles.length) {
+    ctx.status = 404;
+    ctx.body = { error: "Article not found" };
+    return;
+  }
+
+  // Get the updated data from the request body
+  const { title, fullText } = ctx.request.body;
+
+  // Validate input (optional but recommended)
+  if (!title || !fullText) {
+    ctx.status = 400;
+    ctx.body = { error: "Both 'title' and 'fullText' are required." };
+    return;
+  }
+
+  // Update the article in the array
+  const updatedArticle = { title, fullText };
+  articles[id - 1] = updatedArticle;
+
+  // Respond with the updated article
+  ctx.status = 200;
+  ctx.body = updatedArticle;
+
+  await next();
+};
 
 const deleteArticle = async (ctx: RouterContext, next: any) => {
 //TODO: delete an article
