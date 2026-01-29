@@ -4,6 +4,8 @@ import logger from "koa-logger";
 import json from "koa-json";
 import bodyParser from "koa-bodyparser";
 import { CustomErrorMessageFunction, query, body, validationResults } from "koa-req-validation";
+import {router as articles} from "./routes/articles";
+
 
 const app: Koa = new Koa();
 const router: Router = new Router();
@@ -119,7 +121,10 @@ app.use(async (ctx: RouterContext, next: any) => {
         ctx.body = { err: err };
     }
 })
+// Other code statements go here
+app.use(articles.routes());
 
 app.listen(10888, () => {
     console.log("Koa Started");
 })
+
