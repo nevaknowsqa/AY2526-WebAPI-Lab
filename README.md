@@ -10,13 +10,17 @@ npm i @types/koa-logger<br />
 npm i @types/koa-router<br />
 <br />
 
-<b>Before running the code:</b><br />
-1. Setup the database<br />
-2. Update config.ts<br />
-3. Create "out" folder<br />
-<br />
 <b>Setup the Web Server:</b><br />
-    npx tsc -init<br />
+    1. npx tsc -init<br />
+    2. edit "tsconfig.json"<br />
+        "outDir": "./out",<br />
+        ...<br />
+        "verbatimModuleSyntax": false,<br />
+    3. Create "out" folder<br />
+    4. Setup the database
+<br />
+
+<b>Running the code:</b><br />
     tsc<br />
     node .\out\<br />
 <br />
